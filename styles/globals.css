@@ -1,0 +1,13 @@
+ul::-webkit-scrollbar{
+  display: none;
+}
+
+body{
+  background-color: rgb(209 213 219);
+}
+
+#bg{
+  background-image: url('../public/banner.jpg');
+}
+
+/* E:\GitHub\todolist-next-typescript\public\banner.jpg */
