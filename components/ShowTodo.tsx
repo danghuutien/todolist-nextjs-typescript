@@ -12,13 +12,13 @@ const ShowTodo: React.FC<{todo:todoType}> = ({todo})=>{
     // console.log('ShowTodo')
     const dispatch = useDispatch();
     const onDelete = useCallback(()=>{
-        axios.delete('https://637dc8f3cfdbfd9a639ca370.mockapi.io/todolist/'+todo.id)
-        .then((res)=>{
-            return res.data
-        })
-        .then((data:todoType)=>{
-            dispatch(todosSlice.actions.removeTodo({id:data.id}))
-        })
+        // axios.delete('https://637dc8f3cfdbfd9a639ca370.mockapi.io/todolist/'+todo.id)
+        // .then((res)=>{
+        //     return res.data
+        // })
+        // .then((data:todoType)=>{
+            dispatch(todosSlice.actions.removeTodo({id:todo.id}))
+        // })
     },[])    
 
     const onCheck = useCallback(()=>{

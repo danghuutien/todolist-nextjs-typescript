@@ -4,6 +4,9 @@ import { useDispatch } from 'react-redux';
 import todosSlice from "../redux/todosSlice";
 import axios from "axios";
 import todoType from "../type/type";
+import  {get, post} from '../api/api'
+
+// console.log(get)
 
 // console.log(todosSlice)
 const Addtodo = () => {
@@ -19,15 +22,18 @@ const Addtodo = () => {
         if(title == ''){
             alert('trường này bắt buộc nhập')
         }else{
-            axios.post('https://637dc8f3cfdbfd9a639ca370.mockapi.io/todolist', 
-            {
-                title: title,
-                checked: false,
-            })
-            .then((res)=>{
-                return res.data
-            })
-            .then((data:todoType)=>{
+            
+            // axios.post('https://637dc8f3cfdbfd9a639ca370.mockapi.io/todolist', 
+            // {
+            //     title: title,
+            //     checked: false,
+            // })
+            // .then((res)=>{
+            //     return res.data
+            // })
+            
+            post(title, false).then((data)=>{
+
                 dispatch(
                     todosSlice.actions.addTodo({
                         id: data.id,
@@ -35,24 +41,32 @@ const Addtodo = () => {
                         checked: data.checked,
                 })
                 )
-                
             })
+                
+           
             setTitle('')
         }
     },[title])
 
 
     useEffect(()=>{
-        axios.get('https://637dc8f3cfdbfd9a639ca370.mockapi.io/todolist')
-        .then((res)=>{
-            return res.data
-        })
-        .then((data:todoType)=>{
+
+        get().then((data:todoType)=>{
+            // console.log(data)
             dispatch(
                 todosSlice.actions.setInit(data)
             )
-            
         })
+        // axios.get('https://637dc8f3cfdbfd9a639ca370.mockapi.io/todolist')
+        // .then((res)=>{
+        //     return res.data
+        // })
+        // .then((data:todoType)=>{
+        //     dispatch(
+        //         todosSlice.actions.setInit(data)
+        //     )
+            
+        // })
         
     },[])
 
