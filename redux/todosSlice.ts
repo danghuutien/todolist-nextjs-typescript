@@ -4,10 +4,6 @@ import axios from 'axios'
 // import {get} from '../database/todoApi'
 import todoType from '../type/type'
 
-
-
-
-
 const todoState:todoType[]  = []
 
 
