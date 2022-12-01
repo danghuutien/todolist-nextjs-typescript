@@ -9,11 +9,7 @@ import Header from '../components/Header'
 export default function Home() {
     return (
         <div className="bg-gray-300">
-            <Head>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
-            {/* 
-            <script src="https://cdn.tailwindcss.com"></script> */}
-            </Head>
+            
 
             <Provider store={store}>
                 <div className='w-5/12 mx-auto'>
