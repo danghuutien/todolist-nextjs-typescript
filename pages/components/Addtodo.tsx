@@ -3,11 +3,10 @@ import { useDispatch } from 'react-redux';
 // import { v4 as uuidv4 } from "uuid";
 import todosSlice from "../redux/todosSlice";
 import axios from "axios";
-import todoType from "../type/index";
+import todoType from "../type/type";
 
-type AppProps = { inputEl: any };
 // console.log(todosSlice)
-const Addtodo = ({inputEl}:AppProps) => {
+const Addtodo = () => {
     // console.log('Addtodo')
     const dispatch = useDispatch();
     const [title, setTitle] = useState("")
@@ -39,7 +38,6 @@ const Addtodo = ({inputEl}:AppProps) => {
                 
             })
             setTitle('')
-            inputEl.current.focus();
         }
     },[title])
 
@@ -64,7 +62,7 @@ const Addtodo = ({inputEl}:AppProps) => {
         <div className="flex justify-between"
                 style={{borderBottom: "1px solid gray", color: "gray"}}
         >
-        <input ref={inputEl} value={title} onChange={onSetTitle}
+        <input  value={title} onChange={onSetTitle}
                 className="p-2 w-3/4 focus-visible:outline-none "
                 type="text"
                 placeholder="Add tack...."

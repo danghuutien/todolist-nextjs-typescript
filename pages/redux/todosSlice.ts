@@ -1,8 +1,8 @@
 // import { React } from 'react';
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from 'axios'
-import {get} from '../database/todoApi'
-import todoType from '../type/index'
+// import {get} from '../database/todoApi'
+import todoType from '../type/type'
 
 
 
@@ -39,12 +39,6 @@ export default createSlice ({
             }
         },
 
-        getTodos: ()=>{
-            async ()=>{
-                const data =  await get()
-                return data
-            }
-        }
 
        
     },

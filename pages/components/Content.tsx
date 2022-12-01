@@ -4,19 +4,17 @@ import CountTodo from "./CountTodo";
 import ShowTodo from "./ShowTodo"
 import { todoListSelector } from "../redux/selector";
 import { useSelector } from "react-redux";
-import todoType from "../type/index";
+import todoType from "../type/type";
 
 
 
 const Content = () => {
-    const inputEl:any = useRef(null);
 
     const todos = useSelector(todoListSelector);
     
     return (
         <div className="bg-white p-2.5">
-            <Addtodo
-                inputEl = {inputEl} />
+            <Addtodo  />
             <ul className="h-80 overflow-scroll" >
                 {todos.length > 0 ? (todos.map((todo)=>
                     (<ShowTodo key = {todo.id}

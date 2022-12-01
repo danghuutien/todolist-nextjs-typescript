@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import todosSlice from "../redux/todosSlice";
 import axios from "axios";
 
-import todoType from "../type/index";
+import todoType from "../type/type";
 
 
 
