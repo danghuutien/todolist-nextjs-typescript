@@ -14,13 +14,15 @@ const Content = () => {
             <ul className="h-80 overflow-y-scroll" >
                 {todos.length > 0 && (todos.map((todo: TodoType)=>
                     (<ShowTodo key = {todo.id}
-                        todo = {todo}
+                        id = {todo.id} 
+                        title = {todo.title}
+                        checked = {todo.checked}
                     />)
                 
                 ))}
 
             </ul>
-            <CountTodo todos = {todos}/>
+            <CountTodo/>
         </div>
     )
 }

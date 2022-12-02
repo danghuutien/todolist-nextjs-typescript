@@ -5,25 +5,25 @@ import TodoType from "../type/type";
 
 
 
-const ShowTodo: React.FC<{todo:TodoType}> = ({todo})=>{
+const ShowTodo = ({id, title, checked}:TodoType)=>{
     
     const dispatch = useAppDispatch();
     const onDelete = useCallback(()=>{
-        dispatch(deleteTodo(todo.id))
+        dispatch(deleteTodo(id))
 
     },[])    
 
     const onCheck = useCallback(()=>{
         
-       dispatch(updateTodo(todo))
+       dispatch(updateTodo({id, title, checked}))
         
-    },[dispatch, todo])
+    },[dispatch, {id, title, checked}])
     return (
         <li className="flex justify-between mt-5 py-2 border-b border-gray-500" >
             <div>
-                 <input id={todo.id} type="checkbox" checked={todo.checked} onChange={onCheck} className="cursor-pointer"/>
-                <label htmlFor={todo.id}   
-                    className={todo.checked ? 'line-through ml-2.5': "ml-2.5"}>{todo.title}
+                 <input id={id} type="checkbox" checked={checked} onChange={onCheck} className="cursor-pointer"/>
+                <label htmlFor={id}   
+                    className={checked ? 'line-through ml-2.5': "ml-2.5"}>{title}
                     </label>
             </div>
             <button onClick={onDelete} className="fa-solid fa-trash cursor-pointer mr-5"></button>
