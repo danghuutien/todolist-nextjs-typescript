@@ -14,7 +14,7 @@ const Addtodo = () => {
     const title = useAppSelector(todoTitleSelector)
     let isAdd = useAppSelector(isAddSelector)
     let objUpdate = useAppSelector(objUpdateSelector)
-    console.log(isAdd)
+    // console.log(isAdd)
     
     const onSetTitle = useCallback((e: React.ChangeEvent<HTMLInputElement>)=>{
         dispatch(todosSlice.actions.changetodo(e.target.value))
@@ -24,7 +24,10 @@ const Addtodo = () => {
         if(title.trim() == ''){
             alert('trường này bắt buộc nhập')
         }else{
-            dispatch(postTodo({title, checked: false}))
+            dispatch(postTodo({
+                title, checked: false,
+                
+            }))
         }
     },[title])
 

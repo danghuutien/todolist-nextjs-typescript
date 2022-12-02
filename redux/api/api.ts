@@ -9,8 +9,8 @@ export const getTodo = createAsyncThunk("todoList/setInit", async (url:string) =
     return res.data;
 })
 
-export const getTodoById = createAsyncThunk("todoList/updateTitle", async (id:string) => {
-    const res = await requestGetById(id);
+export const getTodoById = createAsyncThunk("todoList/updateTitle", async ({id}:TodoType) => {
+    const res = await requestGetById({id});
     return res.data;
 })
 
@@ -41,8 +41,8 @@ export const updateTitleTodo = createAsyncThunk(
 
 export const deleteTodo = createAsyncThunk(
     "todo/delete",
-    async (id: string) => {
-        const res = await requestRemoveTodo(id)
+    async ({id}: TodoType) => {
+        const res = await requestRemoveTodo({id})
         return res.data;
     }
 );

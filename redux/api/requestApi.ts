@@ -1,7 +1,7 @@
 import axios from "axios"
 import TodoType from "../../type/type"
 
-const requestGetById = async (id:string)  => {
+const requestGetById = async ({id}:TodoType)  => {
     const response = await axios.get(`https://637dc8f3cfdbfd9a639ca370.mockapi.io/todolist/${id}`)
     return response 
 }
@@ -25,7 +25,7 @@ const requestPutTitle= async (data:TodoType)  => {
     return response
 }
 
-const requestRemoveTodo= async (id:string)  => {
+const requestRemoveTodo= async ({id}:TodoType)  => {
     const response = await axios.delete(`https://637dc8f3cfdbfd9a639ca370.mockapi.io/todolist/${id}`)
     return response
 }

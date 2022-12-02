@@ -10,7 +10,7 @@ const ShowTodo = ({id, title, checked}:TodoType)=>{
     
     const dispatch = useAppDispatch();
     const onDelete = useCallback(()=>{
-        dispatch(deleteTodo(id))
+        dispatch(deleteTodo({id}))
 
     },[])    
 
@@ -22,7 +22,7 @@ const ShowTodo = ({id, title, checked}:TodoType)=>{
 
     const onUpdateTitleTodo = useCallback(()=>{
         dispatch(todosSlice.actions.changeIsAdd(false))
-        dispatch(getTodoById(id))
+        dispatch(getTodoById({id}))
          
      },[dispatch, id])
     return (

@@ -1,5 +1,5 @@
 interface TodoType{
-    id:string
+    id?:string
     title?:string, 
     checked?:boolean,
 }
