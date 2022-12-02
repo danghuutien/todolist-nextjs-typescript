@@ -1,12 +1,11 @@
 // import { React } from 'react';
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import axios from 'axios'
-// import {get} from '../database/todoApi'
+import { createSlice } from "@reduxjs/toolkit";
+
 import TodoType from '../type/type'
 import { deleteTodo, updateTodo,  getTodo, postTodo } from "./api/api";
 
 const todoState:TodoType[]  = []
-export default createSlice ({
+export const todosSlice = createSlice ({
     name: "todoList",
     initialState:{
         todoState, title:''
@@ -19,16 +18,14 @@ export default createSlice ({
     },
     extraReducers: (build) => {
         build
-            .addCase(getTodo.pending, (state, action) => {})
             .addCase(getTodo.fulfilled, (state, action) => {
                 state.todoState = action.payload;
                 
             });
         build
-            .addCase(postTodo.pending, (state, action) => {})
             .addCase(postTodo.fulfilled, (state, action) => {
-                state.todoState.push(action.payload);
                 state.title = "";
+                state.todoState.push(action.payload);
             });
         build.addCase(updateTodo.fulfilled, (state, action) => {
             state.todoState = state.todoState.map((todo) => {

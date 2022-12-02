@@ -1,10 +1,5 @@
 const Header = ()=>{
-    const headerStyle = {
-        height : '100px',
-        backgroundPosition: '50%',
-        backgroundPositionX: '50%',
-        backgroundPositionY: 'center',
-    }
+    
 
     const date = new Date()
     let current_day = date.getDay();
@@ -41,7 +36,7 @@ switch (current_day) {
     
     // console.log('Header')
     return (
-        <div id="bg" className="bg-cover bg-no-repeat mt-4" style={headerStyle}>
+        <div className="bg-cover bg-no-repeat bg-center h-24 bg-myimg">
             <p  className="text-white py-5 font-bold text-xl ml-5">{day_name}, {date.getDate()}/ {date.getMonth()+1}/ {date.getFullYear()}</p>
         </div>
     )

@@ -13,11 +13,11 @@ const ShowTodo: React.FC<{todo:TodoType}> = ({todo})=>{
 
     },[])    
 
-    const onCheck = useCallback(async ()=>{
+    const onCheck = useCallback(()=>{
         
-        await dispatch(updateTodo(todo))
+       dispatch(updateTodo(todo))
         
-    },[])
+    },[dispatch, todo])
     return (
         <li className="flex justify-between mt-5 py-2 border-b border-gray-500" >
             <div>

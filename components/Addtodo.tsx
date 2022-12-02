@@ -1,7 +1,7 @@
 import { memo, useCallback, useEffect } from "react";
 import { todoTitle } from "../redux/selector";
 import { useAppDispatch, useAppSelector } from '../hook';
-import todosSlice from "../redux/todosSlice";
+import {todosSlice} from "../redux/todosSlice";
 import  {getTodo, postTodo} from '../redux/api/api'
 
 const Addtodo = () => {
@@ -30,9 +30,7 @@ const Addtodo = () => {
 
     return (
 
-        <div className="flex justify-between"
-                style={{borderBottom: "1px solid gray", color: "gray"}}
-        >
+        <div className="flex justify-between text-gray-500 border-b border-solid border-gray-300">
         <input  value={title} onChange={onSetTitle}
                 className="p-2 w-3/4 focus-visible:outline-none "
                 type="text"

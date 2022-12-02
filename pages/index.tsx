@@ -5,9 +5,9 @@ import Header from '../components/Header'
 
 export default function Home() {
     return (
-        <div className="bg-gray-300">
+        <div className="min-h-screen bg-gray-300">
             <Provider store={store}>
-                <div className='w-5/12 mx-auto'>
+                <div className='pt-5 w-5/12 mx-auto'>
                     <Header />
                     <Content />
                 </div>

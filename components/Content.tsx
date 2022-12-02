@@ -4,6 +4,7 @@ import CountTodo from "./CountTodo";
 import ShowTodo from "./ShowTodo"
 import { todoListSelector } from "../redux/selector";
 import { useSelector } from "react-redux";
+import TodoType from "../type/type";
 
 const Content = () => {
     const todos = useSelector(todoListSelector);
@@ -11,13 +12,13 @@ const Content = () => {
     return (
         <div className="bg-white p-2.5">
             <Addtodo  />
-            <ul className="h-80 overflow-scroll" >
-                {todos.length > 0 ? (todos.map((todo)=>
+            <ul className="h-80 overflow-y-scroll" >
+                {todos.length > 0 && (todos.map((todo: TodoType)=>
                     (<ShowTodo key = {todo.id}
                         todo = {todo}
                     />)
                 
-                )): ''}
+                ))}
 
             </ul>
             <CountTodo todos = {todos}/>
