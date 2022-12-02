@@ -2,15 +2,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from 'axios'
 // import {get} from '../database/todoApi'
-import todoType from '../type/type'
+import TodoType from '../type/type'
 import { deleteTodo, updateTodo,  getTodo, postTodo } from "./api/api";
 
-const todoState:todoType[]  = []
-
-interface todoAdd{
-    title:string,
-    checked:boolean
-}
+const todoState:TodoType[]  = []
 export default createSlice ({
     name: "todoList",
     initialState:{
@@ -20,6 +15,7 @@ export default createSlice ({
         changetodo:(state, action)=>{
             state.title = action.payload;
         },
+        
     },
     extraReducers: (build) => {
         build
@@ -49,4 +45,8 @@ export default createSlice ({
             );
         });
     },
-});
+    
+},
+
+
+);

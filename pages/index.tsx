@@ -1,6 +1,3 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
 import { Provider } from 'react-redux'
 import Content  from '../components/Content'
 import store from '../redux/store'

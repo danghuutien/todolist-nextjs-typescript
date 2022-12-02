@@ -1,13 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios"
-import todoType from '../../type/type'
+import TodoType from '../../type/type'
 
 
 export const getTodo = createAsyncThunk("todoList/setInit", async () => {
-    const get = () => {
-        return axios.get("https://637dc8f3cfdbfd9a639ca370.mockapi.io/todolist");
-    };
-    const res = await get();
+    const res = await axios.get("https://637dc8f3cfdbfd9a639ca370.mockapi.io/todolist");
     return res.data;
 })
 
@@ -23,7 +20,7 @@ export const postTodo = createAsyncThunk("todoList/addTodo",
 
 export const updateTodo = createAsyncThunk(
     "todoList/checkedTodo",
-    async (data:todoType) => {
+    async (data:TodoType) => {
         const res = await axios.put(`https://637dc8f3cfdbfd9a639ca370.mockapi.io/todolist/${data.id}`,{
             checked: !data.checked
         } )

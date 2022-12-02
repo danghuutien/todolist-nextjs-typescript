@@ -1,19 +1,12 @@
-import { memo, useCallback, useEffect, useState } from "react";
+import { memo, useCallback, useEffect } from "react";
 import { todoTitle } from "../redux/selector";
 import { useAppDispatch, useAppSelector } from '../hook';
 import todosSlice from "../redux/todosSlice";
 import  {getTodo, postTodo} from '../redux/api/api'
 
-// console.log(get)
-interface addTodoType{
-    title:string, 
-    checked:boolean
-}
-// console.log(todosSlice)
 const Addtodo = () => {
-    // console.log(getTodo())
+
     const dispatch = useAppDispatch();
-    // const [title, setTitle] = useState("")
 
     const title = useAppSelector(todoTitle)
 

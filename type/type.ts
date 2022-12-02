@@ -1,7 +1,7 @@
-interface todoType{
+interface TodoType{
     id:string
     title:string, 
     checked:boolean,
 }
 
-export default todoType
+export default TodoType
