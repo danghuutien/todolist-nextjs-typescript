@@ -28,8 +28,6 @@ export const updateTodo = createAsyncThunk(
     }
 );
 
-
-
 export const deleteTodo = createAsyncThunk(
     "todo/delete",
     async (id: string) => {
