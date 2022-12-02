@@ -1,18 +1,23 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios"
 import TodoType from '../../type/type'
+import { requestGetById,requestPutChecked,requestSaveTodo, requestPutTitle, requestRemoveTodo } from "./requestApi";
 
 
-export const getTodo = createAsyncThunk("todoList/setInit", async () => {
-    const res = await axios.get("https://637dc8f3cfdbfd9a639ca370.mockapi.io/todolist");
+export const getTodo = createAsyncThunk("todoList/setInit", async (url:string) => {
+    const res = await axios.get(url);
+    return res.data;
+})
+
+export const getTodoById = createAsyncThunk("todoList/updateTitle", async (id:string) => {
+    const res = await requestGetById(id);
     return res.data;
 })
 
 
 export const postTodo = createAsyncThunk("todoList/addTodo", 
-    async (data:object) => {
-        const response = 
-            await axios.post("https://637dc8f3cfdbfd9a639ca370.mockapi.io/todolist", data);
+    async (data:TodoType) => {
+        const response = await requestSaveTodo(data);
         return response.data
     
 })
@@ -21,9 +26,15 @@ export const postTodo = createAsyncThunk("todoList/addTodo",
 export const updateTodo = createAsyncThunk(
     "todoList/checkedTodo",
     async (data:TodoType) => {
-        const res = await axios.put(`https://637dc8f3cfdbfd9a639ca370.mockapi.io/todolist/${data.id}`,{
-            checked: !data.checked
-        } )
+        const res = await requestPutChecked(data)
+        return res.data;
+    }
+);
+
+export const updateTitleTodo = createAsyncThunk(
+    "todoList/updateTitleTodo",
+    async (data:TodoType) => {
+        const res = await requestPutTitle(data)
         return res.data;
     }
 );
@@ -31,7 +42,10 @@ export const updateTodo = createAsyncThunk(
 export const deleteTodo = createAsyncThunk(
     "todo/delete",
     async (id: string) => {
-        const res = await axios.delete(`https://637dc8f3cfdbfd9a639ca370.mockapi.io/todolist/${id}`)
+        const res = await requestRemoveTodo(id)
         return res.data;
     }
 );
+
+
+
