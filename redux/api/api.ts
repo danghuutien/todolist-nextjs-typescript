@@ -1,11 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios"
 import TodoType from '../../type/type'
-import { requestGetById,requestPutChecked,requestSaveTodo, requestPutTitle, requestRemoveTodo } from "./requestApi";
+import { requestGetAllTodo, requestGetById,requestPutChecked,requestSaveTodo, requestPutTitle, requestRemoveTodo } from "./requestApi";
 
 
-export const getTodo = createAsyncThunk("todoList/setInit", async (url:string) => {
-    const res = await axios.get(url);
+export const getTodo = createAsyncThunk("todoList/setInit", async () => {
+    const res = await requestGetAllTodo();
     return res.data;
 })
 

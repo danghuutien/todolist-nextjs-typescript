@@ -5,8 +5,6 @@ import {todosSlice} from "../redux/todosSlice";
 import  {getTodo, postTodo, updateTitleTodo} from '../redux/api/api'
 
 
-const urlGet = "https://637dc8f3cfdbfd9a639ca370.mockapi.io/todolist"
-const postUrl:string = "https://637dc8f3cfdbfd9a639ca370.mockapi.io/todolist"
 const Addtodo = () => {
 
     const dispatch = useAppDispatch();
@@ -41,7 +39,7 @@ const Addtodo = () => {
 
 
     useEffect(()=>{
-        dispatch(getTodo(urlGet))
+        dispatch(getTodo())
     },[dispatch])
 
 
