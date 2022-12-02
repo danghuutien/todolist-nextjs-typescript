@@ -1,9 +1,19 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios"
 
-export const get = async ()=>{
-    const response = await axios.get('https://637dc8f3cfdbfd9a639ca370.mockapi.io/todolist')
-    return response.data
-}
+
+export const getTodo = createAsyncThunk("todoList/setInit", async () => {
+    const get = () => {
+        return axios.get("https://637dc8f3cfdbfd9a639ca370.mockapi.io/todolist");
+    };
+    const res = await get();
+    return res.data;
+})
+
+// export const get = async ()=>{
+//     const response = await axios.get('https://637dc8f3cfdbfd9a639ca370.mockapi.io/todolist')
+//     return response.data
+// }
 
 
 export const post = async (title:string, checked:boolean)=>{

@@ -1,17 +1,18 @@
 import { memo, useCallback, useEffect, useState } from "react";
 import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../hook';
 // import { v4 as uuidv4 } from "uuid";
 import todosSlice from "../redux/todosSlice";
 import axios from "axios";
 import todoType from "../type/type";
-import  {get, post} from '../api/api'
+import  {getTodo, post} from '../redux/api/api'
 
 // console.log(get)
 
 // console.log(todosSlice)
 const Addtodo = () => {
     // console.log('Addtodo')
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const [title, setTitle] = useState("")
 
     const onSetTitle = useCallback((e: React.ChangeEvent<HTMLInputElement>)=>{
@@ -50,24 +51,7 @@ const Addtodo = () => {
 
 
     useEffect(()=>{
-
-        get().then((data:todoType)=>{
-            // console.log(data)
-            dispatch(
-                todosSlice.actions.setInit(data)
-            )
-        })
-        // axios.get('https://637dc8f3cfdbfd9a639ca370.mockapi.io/todolist')
-        // .then((res)=>{
-        //     return res.data
-        // })
-        // .then((data:todoType)=>{
-        //     dispatch(
-        //         todosSlice.actions.setInit(data)
-        //     )
-            
-        // })
-        
+        dispatch(getTodo())
     },[])
 
 

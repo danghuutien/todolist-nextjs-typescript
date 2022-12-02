@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from 'axios'
 // import {get} from '../database/todoApi'
 import todoType from '../type/type'
-import { remove, put, post  } from "../api/api";
+import { remove, put, post  } from "./api/api";
 
 const todoState:todoType[]  = []
 
