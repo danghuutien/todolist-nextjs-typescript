@@ -2,6 +2,8 @@ import React, { memo, useCallback } from "react"
 import { useDispatch } from 'react-redux'
 import todosSlice from "../redux/todosSlice";
 import axios from "axios";
+import { useAppDispatch, useAppSelector } from '../hook';
+import {updateTodo, deleteTodo} from '../redux/api/api'
 
 import todoType from "../type/type";
 
@@ -10,19 +12,14 @@ import todoType from "../type/type";
 const ShowTodo: React.FC<{todo:todoType}> = ({todo})=>{
     
     // console.log('ShowTodo')
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const onDelete = useCallback(()=>{
-        // axios.delete('https://637dc8f3cfdbfd9a639ca370.mockapi.io/todolist/'+todo.id)
-        // .then((res)=>{
-        //     return res.data
-        // })
-        // .then((data:todoType)=>{
-            dispatch(todosSlice.actions.removeTodo({id:todo.id}))
-        // })
+        dispatch(deleteTodo(todo.id))
+
     },[])    
 
     const onCheck = useCallback(()=>{
-        dispatch(todosSlice.actions.checkedTodo(todo.id))
+        dispatch(updateTodo(todo))
     },[])
     return (
         <li className="flex justify-between mt-5 py-2 border-b border-gray-500" >

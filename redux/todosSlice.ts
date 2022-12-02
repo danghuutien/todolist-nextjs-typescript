@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from 'axios'
 // import {get} from '../database/todoApi'
 import todoType from '../type/type'
-import { remove, put, post  } from "./api/api";
+import { deleteTodo, updateTodo,  getTodo, postTodo } from "./api/api";
 
 const todoState:todoType[]  = []
 
@@ -14,32 +14,41 @@ interface todoAdd{
 export default createSlice ({
     name: "todoList",
     initialState:{
-        todoState,
+        todoState, title:''
     },
     reducers: {
-        setInit:(state, action)=>{
-            
-                void(state.todoState = action.payload)
-            
-        },
-        addTodo: (state, action: PayloadAction<todoType>) => {
-            
-            state.todoState.push(action.payload);
-        }, 
-        removeTodo: (state, action:PayloadAction<{id: string}>) => {
-            state.todoState = state.todoState.filter((todo:todoType) => todo.id !== action.payload.id);
-            remove(action.payload.id)
+        changetodo:(state, action)=>{
+            state.title = action.payload;
+                // void(state.title = action.payload)
             
         },
-        checkedTodo: (state, action) => {
-            const todo:todoType|undefined = state.todoState.find((todo:todoType) => todo.id === action.payload);
-            if (todo) {
-                todo.checked = !todo.checked;
-                put(todo.checked, action.payload)     
-            }
-        },
+    },
+    extraReducers: (build) => {
+        build
+            .addCase(getTodo.pending, (state, action) => {})
+            .addCase(getTodo.fulfilled, (state, action) => {
+                state.todoState = action.payload;
+                
+            });
+        build
+            .addCase(postTodo.pending, (state, action) => {})
+            .addCase(postTodo.fulfilled, (state, action) => {
+                state.todoState.push(action.payload);
+                state.title = "";
+            });
+        build.addCase(updateTodo.fulfilled, (state, action) => {
+            state.todoState = state.todoState.map((todo) => {
+                if (todo.id == action.payload.id) {
+                    todo.checked = !todo.checked;
+                }
+                return todo;
+            });
+        });
 
-
-       
+        build.addCase(deleteTodo.fulfilled, (state, action) => {
+            state.todoState = state.todoState.filter(
+                (state) => action.payload.id !== state.id
+            );
+        });
     },
 });

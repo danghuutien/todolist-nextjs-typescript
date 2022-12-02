@@ -4,7 +4,7 @@ import CountTodo from "./CountTodo";
 import ShowTodo from "./ShowTodo"
 import { todoListSelector } from "../redux/selector";
 import { useSelector } from "react-redux";
-import todoType from "../type/type";
+
 
 
 

@@ -1,58 +1,38 @@
 import { memo, useCallback, useEffect, useState } from "react";
-import { useDispatch } from 'react-redux';
-import { useAppDispatch } from '../hook';
-// import { v4 as uuidv4 } from "uuid";
+import { todoTitle } from "../redux/selector";
+import { useAppDispatch, useAppSelector } from '../hook';
 import todosSlice from "../redux/todosSlice";
-import axios from "axios";
-import todoType from "../type/type";
-import  {getTodo, post} from '../redux/api/api'
+import  {getTodo, postTodo} from '../redux/api/api'
 
 // console.log(get)
-
+interface addTodoType{
+    title:string, 
+    checked:boolean
+}
 // console.log(todosSlice)
 const Addtodo = () => {
-    // console.log('Addtodo')
+    // console.log(getTodo())
     const dispatch = useAppDispatch();
-    const [title, setTitle] = useState("")
+    // const [title, setTitle] = useState("")
+
+    const title = useAppSelector(todoTitle)
 
     const onSetTitle = useCallback((e: React.ChangeEvent<HTMLInputElement>)=>{
-        setTitle(e.target.value)
+        dispatch(todosSlice.actions.changetodo(e.target.value))
     }, [])
 
     const handleTodo = useCallback(()=>{
-        if(title == ''){
+        if(title.trim() == ''){
             alert('trường này bắt buộc nhập')
         }else{
-            
-            // axios.post('https://637dc8f3cfdbfd9a639ca370.mockapi.io/todolist', 
-            // {
-            //     title: title,
-            //     checked: false,
-            // })
-            // .then((res)=>{
-            //     return res.data
-            // })
-            
-            post(title, false).then((data)=>{
-
-                dispatch(
-                    todosSlice.actions.addTodo({
-                        id: data.id,
-                        title: data.title,
-                        checked: data.checked,
-                })
-                )
-            })
-                
-           
-            setTitle('')
+            dispatch(postTodo({title: title, checked: false}))
         }
     },[title])
 
 
     useEffect(()=>{
         dispatch(getTodo())
-    },[])
+    },[dispatch])
 
 
     return (
