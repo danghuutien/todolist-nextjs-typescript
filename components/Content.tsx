@@ -8,7 +8,6 @@ import TodoType from "../type/type";
 
 const Content = () => {
     const todos = useSelector(todoListSelector);
-    
     return (
         <div className="bg-white p-2.5">
             <Addtodo  />
