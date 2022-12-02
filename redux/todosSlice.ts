@@ -53,6 +53,7 @@ export const todosSlice = createSlice ({
                 }
                 return todo;
             });
+            state.isAdd = true
             state.title = "";
         });
 
