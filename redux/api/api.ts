@@ -31,10 +31,7 @@ export const updateTodo = createAsyncThunk(
     }
 );
 
-export const remove = async (id:string)=>{
-    await axios.delete(`https://637dc8f3cfdbfd9a639ca370.mockapi.io/todolist/${id}`)
-    
-}
+
 
 export const deleteTodo = createAsyncThunk(
     "todo/delete",

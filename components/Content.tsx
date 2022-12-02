@@ -5,11 +5,7 @@ import ShowTodo from "./ShowTodo"
 import { todoListSelector } from "../redux/selector";
 import { useSelector } from "react-redux";
 
-
-
-
 const Content = () => {
-
     const todos = useSelector(todoListSelector);
     
     return (

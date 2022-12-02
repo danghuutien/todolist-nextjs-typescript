@@ -19,8 +19,6 @@ export default createSlice ({
     reducers: {
         changetodo:(state, action)=>{
             state.title = action.payload;
-                // void(state.title = action.payload)
-            
         },
     },
     extraReducers: (build) => {
@@ -38,7 +36,7 @@ export default createSlice ({
             });
         build.addCase(updateTodo.fulfilled, (state, action) => {
             state.todoState = state.todoState.map((todo) => {
-                if (todo.id == action.payload.id) {
+                if (todo.id === action.payload.id) {
                     todo.checked = !todo.checked;
                 }
                 return todo;

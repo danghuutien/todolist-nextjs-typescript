@@ -24,7 +24,7 @@ const ShowTodo: React.FC<{todo:todoType}> = ({todo})=>{
     return (
         <li className="flex justify-between mt-5 py-2 border-b border-gray-500" >
             <div>
-                <input id={todo.id} type="checkbox" onChange={onCheck} className="cursor-pointer"/>
+                <input id={todo.id} type="checkbox" checked={todo.checked} onChange={onCheck} className="cursor-pointer"/>
                 <label htmlFor={todo.id}   
                     className={todo.checked ? 'line-through ml-2.5': "ml-2.5"}>{todo.title}
                     </label>
